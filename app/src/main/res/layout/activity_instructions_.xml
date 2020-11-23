@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Instructions_Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_TXT_Title"
+        android:text="Instructions"
+        android:textSize="55dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+
+        ></TextView>
+
+    <TextView
+        android:id="@+id/R.id.text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_TXT_Title"
+        android:layout_marginTop="-3dp"
+        android:text="Greeting!\nWelcome the our War!"
+        android:textSize="21dp"></TextView>
+
+</RelativeLayout>
