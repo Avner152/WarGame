@@ -23,18 +23,6 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/img_back"/>
 
-
-
-  <Button
-      android:id="@+id/game_BTN_deal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/game_LBL_Answer"
-      android:layout_centerHorizontal="true"
-      android:text="Deal!"
-      android:textSize="55dp"
-      />
-
     <Button
         android:id="@+id/game_BTN_forfeit"
         android:layout_width="wrap_content"
@@ -48,7 +36,7 @@
         android:id="@+id/game_LBL_NUM1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/game_BTN_deal"
+        android:layout_above="@id/game_BTN_forfeit"
         android:layout_alignLeft="@+id/game_LBL_Winner"
         android:text="0"
         android:textSize="55dp"/>
@@ -58,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/game_LBL_Winner"
-        android:layout_below="@id/game_BTN_deal"
+        android:layout_above="@id/game_BTN_forfeit"
         android:textSize="55dp"
         android:text="0"
         />

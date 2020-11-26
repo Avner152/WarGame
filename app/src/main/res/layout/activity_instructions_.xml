@@ -20,19 +20,13 @@
         ></TextView>
 
     <TextView
-        android:id="@+id/R.id.text"
+        android:id="@+id/R.id.TEXT"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/main_TXT_Title"
-        android:text="Greeting!\nWelcome the our War! so here's some rules:\n
-1) The game starts when both participant's score initiated with 0.\n
-2) In Order to take the next step, the user has to click 'DEAL'.\n
-3) The participant with the greater power level wins +1 score! the other stays the same.\n
-4) When it's a tie then both participants losing 1 point.\n
-5) When it's a tie and any participant has 0 points then they stay the same.\n
-6) The first participant that gets to 10 points is the Winner! congrants!\n\n
-
-HAVE FUN!"
-        android:textSize="21dp"></TextView>
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text=""
+        android:textSize="19dp"></TextView>
 
 </RelativeLayout>
