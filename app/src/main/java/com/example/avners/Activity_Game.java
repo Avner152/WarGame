@@ -2,8 +2,10 @@ package com.example.avners;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,8 +20,9 @@ public class Activity_Game extends AppCompatActivity {
     final int DELAY = 1000;
     private TextView game_LBL_Num1, game_LBL_Num2, game_LBL_Answer, game_LBL_Winner;
     private ImageView game_IMG_LeftCard, game_IMG_RightCard;
-    private Button game_BTN_deal, game_BTN_forfeit;
-    private int num1, num2,power1, power2, score1 = 0, score2 = 0, counter = 0;
+    private Button  game_BTN_forfeit;
+    private int num1, num2,power1, power2, score1 = 0, score2 = 0, counter = 0, res = 0;
+     private MediaPlayer mp;
 
 
     @Override
@@ -28,9 +31,7 @@ public class Activity_Game extends AppCompatActivity {
         setContentView(R.layout.activity__game);
         findViews();
         createCards();
-        startGame();
         initViews();
-
     }
 
     private void startGame() {
@@ -64,23 +65,50 @@ public class Activity_Game extends AppCompatActivity {
         cards.add(new Card(23,5, "Pilaf"));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onPause() {
+        Log.d("game", "Game paused");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d("game", "Game Stopped");
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("game", "Game Started");
+        super.onStart();
+        startGame();
+
+    }
 
     Handler handler = new Handler();
     private  Runnable r = new Runnable() {
         @Override
         public void run() {
             handler.postDelayed(this, DELAY);
-            int res = shuffle();
+             res = shuffle();
             if (res != 0)
                 stopGame(res);
         }
     };
 
+
     private void initViews() {
         game_BTN_forfeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                res = 0;
+            stopGame(res);
             finish();
             }
         });
@@ -98,10 +126,27 @@ public class Activity_Game extends AppCompatActivity {
 
     private void stopGame(int res) {
         game_LBL_Answer.setText("The Winner is: Player #" + res);
+        if(res != 0) {
+            playSound(R.raw.snd_joker);
+        }
+        else
+            mp.stop();
         handler.removeCallbacks(r);
     }
 
+    private void playSound(int rawId) {
+        mp = MediaPlayer.create(this, rawId);
+        if(mp != null && mp.isPlaying() ){
+             mp.reset();
+             mp.release();
+             mp = null;
+         }
+        mp.start();
+    }
+
     private int shuffle(){
+            playSound(R.raw.snd_whip);
+
         num1 = (int) (1 + Math.random() * 23) -1;
         num2 = (int) (1 + Math.random() * 23) -1;
 
@@ -138,18 +183,18 @@ public class Activity_Game extends AppCompatActivity {
         return 0;
     }
 
-        private int findPowerById(int id) {
-            return cards.get(id).getPower();
-        }
-    private String findNameById(int id) {
-        return cards.get(id).getName();
-    }
-
         private void showCards(int num1, int num2) {
             int leftCard = getResources().getIdentifier("img" + num1, "drawable", getPackageName() );
             game_IMG_LeftCard.setImageResource(leftCard);
 
             int rightCard = getResources().getIdentifier("img" + num2, "drawable", getPackageName() );
             game_IMG_RightCard.setImageResource(rightCard);
+    }
+
+    private int findPowerById(int id) {
+        return cards.get(id).getPower();
+    }
+    private String findNameById(int id) {
+        return cards.get(id).getName();
     }
 }

@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String myKey = "myKey";
     private TextView main_LBL_title, main_LBL_Winner;
     private Button main_BTN_GaneStart, main_BTN_Inst, main_BTN_Quit ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("main", "onCreate: Been Created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
 
-
-//        if (savedInstanceState != null) {
-//
-//        }
     }
 
     private void initViews() {
@@ -71,31 +67,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d("Been Started", "Hello Now!");
+        Log.d("main", "Been Started");
         super.onStart();
     }
 
     @Override
     protected void onPause() {
-        Log.d("Been Paused", "See You Soon...");
+        Log.d("main", "Been Paused");
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        Log.d("Been Killed", "Good GoodBye");
+        Log.d("main", "Been Destroyed");
         super.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-//        outState.putInt(myKey, counter);
     }
 
     @Override
     protected void onResume() {
-        Log.d("Been Resumed", "Hey I'm Back!");
+        Log.d("main", "Been Resumed");
         super.onResume();
     }
 
