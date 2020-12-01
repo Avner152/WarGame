@@ -18,10 +18,9 @@ public class Instructions_Activity extends AppCompatActivity {
     private String newStr = "";
     private static final int DELAY = 40;
     private TextView tv;
-    private int n = 0;
+    private int curChar = 0;
+    private boolean initChar = false;
     private MediaPlayer mp;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,30 +28,36 @@ public class Instructions_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions_);
         tv = findViewById(R.id.R_id_TEXT);
-        playSounds(R.raw.snd_kboard);
         startDelay();
     }
 
     private void playSounds(int rawId) {
         mp = MediaPlayer.create(this, R.raw.snd_kboard);
         mp.start();
-
     }
 
     Runnable r = new  Runnable() {
         @Override
         public void run() {
-            newStr += INSTR_STR.charAt(n++);
-            tv.setText(newStr);
-            if(n < 71)
-                handler.postDelayed(r, 50);
-            else if(n < INSTR_STR.length())
-                handler.postDelayed(r, 25);
-
-             if(n == INSTR_STR.length())
-                mp.stop();
+            printMyStr(++curChar);
         }
     };
+        private void printMyStr(int curChar) {
+            newStr += INSTR_STR.charAt(curChar);
+
+            if(curChar < 70)
+                handler.postDelayed(r, 100);
+            else if(curChar < INSTR_STR.length()-1) {
+                handler.postDelayed(r, 80);
+                if(!mp.isPlaying())
+                    mp.start();
+            }
+            else if(curChar == INSTR_STR.length()-1)
+               stopDelay();
+            tv.setText(newStr);
+
+            }
+
 
 
     private String strId() {
@@ -76,12 +81,21 @@ public class Instructions_Activity extends AppCompatActivity {
     protected void onStart() {
         Log.d("instr.", "Been Started");
         super.onStart();
+        printMyStr(curChar);
+        playSounds(R.raw.snd_kboard);
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mp.stop();
+        stopDelay();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     private void stopDelay() {

@@ -17,16 +17,19 @@ public class Activity_Game extends AppCompatActivity {
 
     private static ArrayList<Card> cards = new ArrayList<>();
 
-    final int DELAY = 1000;
+    final int DELAY = 750;
     private TextView game_LBL_Num1, game_LBL_Num2, game_LBL_Answer, game_LBL_Winner;
     private ImageView game_IMG_LeftCard, game_IMG_RightCard;
     private Button  game_BTN_forfeit;
-    private int num1, num2,power1, power2, score1 = 0, score2 = 0, counter = 0, res = 0;
-     private MediaPlayer mp;
+    private int num1, num2,power1, power2,curScore1 ,curScore2, score1 = 0, score2 = 0, counter = 0, res = 0;
+    private MediaPlayer mp;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("game", "Game Created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__game);
         findViews();
@@ -65,27 +68,32 @@ public class Activity_Game extends AppCompatActivity {
         cards.add(new Card(23,5, "Pilaf"));
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     @Override
     protected void onPause() {
         Log.d("game", "Game paused");
         super.onPause();
+        pauseGame(curScore1, curScore2);
+
+    }
+
+    private void pauseGame(int curScore1, int curScore2) {
+
     }
 
     @Override
     protected void onStop() {
         Log.d("game", "Game Stopped");
         super.onStop();
+        stopGame(res);
+
     }
 
     @Override
     protected void onStart() {
         Log.d("game", "Game Started");
         super.onStart();
+        curScore1 = curScore2 = 0;
         startGame();
 
     }
@@ -95,7 +103,7 @@ public class Activity_Game extends AppCompatActivity {
         @Override
         public void run() {
             handler.postDelayed(this, DELAY);
-             res = shuffle();
+             res = shuffle(curScore1, curScore2);
             if (res != 0)
                 stopGame(res);
         }
@@ -106,7 +114,6 @@ public class Activity_Game extends AppCompatActivity {
         game_BTN_forfeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 res = 0;
             stopGame(res);
             finish();
@@ -125,27 +132,30 @@ public class Activity_Game extends AppCompatActivity {
     }
 
     private void stopGame(int res) {
-        game_LBL_Answer.setText("The Winner is: Player #" + res);
         if(res != 0) {
             playSound(R.raw.snd_joker);
+            game_LBL_Winner.setText("Player #"+res);
+            game_LBL_Answer.setText("wins!");
+        }else if(mp!= null)
+                mp.release();
+            handler.removeCallbacks(r);
         }
-        else
-            mp.stop();
-        handler.removeCallbacks(r);
-    }
 
     private void playSound(int rawId) {
         mp = MediaPlayer.create(this, rawId);
-        if(mp != null && mp.isPlaying() ){
-             mp.reset();
-             mp.release();
-             mp = null;
-         }
+        if(mp != null) {
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mplayer) {
+                    mplayer.release();
+                }
+            });
+        }
         mp.start();
+
     }
 
-    private int shuffle(){
-            playSound(R.raw.snd_whip);
+    private int shuffle(int curScore1, int curScore2){
+        playSound(R.raw.snd_whip);
 
         num1 = (int) (1 + Math.random() * 23) -1;
         num2 = (int) (1 + Math.random() * 23) -1;
@@ -171,13 +181,15 @@ public class Activity_Game extends AppCompatActivity {
                     score2--;
             }
 
+        curScore1 = score1;
+        curScore2 = score2;
 
         game_LBL_Num1.setText("" + score1);
         game_LBL_Num2.setText("" + score2);
 
-        if (score1 == 10)
+        if (score1 >= 10)
             return 1;
-        else if (score2 == 10)
+        else if (score2 >= 10)
             return 2;
 
         return 0;

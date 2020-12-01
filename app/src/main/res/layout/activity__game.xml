@@ -65,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/game_LBL_Winner"
+        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:textSize="35dp"
         android:text=""

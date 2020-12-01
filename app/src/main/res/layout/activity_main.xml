@@ -7,13 +7,18 @@
     android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        >
 
     <TextView
         android:id="@+id/main_LBL_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dragon Ball WarGame"
-        android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:textStyle="bold"
         />
@@ -25,11 +30,17 @@
         android:layout_below="@id/main_LBL_title"
         android:src="@drawable/wallpaper"></ImageView>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_below="@id/main_IMG_Wallpaper"
-
         >
 
         <Button
@@ -61,6 +72,8 @@
             android:textSize="20dp" />
 
     </GridLayout>
+
+  </LinearLayout>
 
 
 </RelativeLayout>
