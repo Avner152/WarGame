@@ -3,43 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/backBlue"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        >
+    >
 
     <TextView
         android:id="@+id/main_LBL_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:shadowColor="@color/silver"
+        android:gravity="center"
         android:text="Dragon Ball WarGame"
+        android:textColor="#f9aa33"
         android:textSize="40dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/main_IMG_Wallpaper"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="500dp"
         android:layout_below="@id/main_LBL_title"
-        android:src="@drawable/wallpaper"></ImageView>
+        android:src="@drawable/wallpaper">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </RelativeLayout>
-
+    </ImageView>
 
     <GridLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/gl"
+        android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:backgroundTint="#C0C0C0"
         android:layout_below="@id/main_IMG_Wallpaper"
         >
 
@@ -49,7 +47,7 @@
             android:layout_height="65dp"
             android:text="Start Game"
             android:textAllCaps="false"
-            android:textColor="#696969"
+            android:textColor="#f9aa33"
             android:textSize="20dp" />
 
 
@@ -59,21 +57,28 @@
             android:layout_height="65dp"
             android:text="Instructions"
             android:textAllCaps="false"
-            android:textColor="#696969"
+            android:textColor="#f9aa33"
             android:textSize="20dp" />
 
         <Button
             android:id="@+id/main_BTN_Quit"
-            android:layout_width="wrap_content"
+            android:layout_width="157dp"
             android:layout_height="65dp"
             android:text="Quit"
             android:textAllCaps="false"
-            android:textColor="#696969"
+            android:textColor="#f9aa33"
             android:textSize="20dp" />
 
+
     </GridLayout>
-
-  </LinearLayout>
-
-
+    <Button
+        android:id="@+id/main_BTN_Scores"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@id/gl"
+        android:text="Scores"
+        android:textAllCaps="false"
+        android:textColor="#f9aa33"
+        android:textSize="20dp"
+         />
 </RelativeLayout>

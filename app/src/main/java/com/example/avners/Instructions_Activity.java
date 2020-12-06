@@ -11,7 +11,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.TextView;
 
-public class Instructions_Activity extends AppCompatActivity {
+public class Instructions_Activity extends Main {
 
     private final String INSTR_STR = strId();
     private Handler handler = new Handler();

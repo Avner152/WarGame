@@ -5,12 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Game">
+    tools:context=".Activity_Game"
+    android:background="@color/backBlue"
+
+    >
 
     <ImageView
         android:id="@+id/game_IMG_LeftCard"
-        android:layout_width="200dp"
-        android:layout_height="280dp"
+        android:layout_width="220dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
         android:layout_alignBottom="@id/game_IMG_LeftCard"
         android:layout_toLeftOf="@id/game_IMG_RightCard"
@@ -18,9 +22,11 @@
 
     <ImageView
         android:id="@+id/game_IMG_RightCard"
-        android:layout_width="200dp"
-        android:layout_height="280dp"
+        android:layout_width="220dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/game_IMG_RightCard"
         android:src="@drawable/img_back"/>
 
     <Button
@@ -39,6 +45,7 @@
         android:layout_above="@id/game_BTN_forfeit"
         android:layout_alignLeft="@+id/game_LBL_Winner"
         android:text="0"
+        android:textColor="@color/white"
         android:textSize="55dp"/>
 
     <TextView
@@ -47,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/game_LBL_Winner"
         android:layout_above="@id/game_BTN_forfeit"
+        android:textColor="@color/white"
         android:textSize="55dp"
         android:text="0"
         />
@@ -57,6 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="55dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:text="Lets Play!"
         />
 

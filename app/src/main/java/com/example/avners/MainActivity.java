@@ -5,31 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Main {
 
     private TextView main_LBL_title, main_LBL_Winner;
-    private Button main_BTN_GaneStart, main_BTN_Inst, main_BTN_Quit ;
+    private Button main_BTN_GaneStart, main_BTN_Inst, main_BTN_Quit, main_BTN_Scores ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("main", "Been Created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         findViews();
-        main_BTN_GaneStart.setBackgroundColor(Color.parseColor("#C0C0C0"));
-        main_BTN_Inst.setBackgroundColor(Color.parseColor("#C0C0C0"));
-        main_BTN_Quit.setBackgroundColor(Color.parseColor("#C0C0C0"));
-
         initViews();
+        colorMyBtns();
 
     }
+
 
     private void initViews() {
         main_BTN_GaneStart.setOnClickListener(new View.OnClickListener() {
@@ -40,19 +38,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        main_BTN_Inst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this, Instructions_Activity.class);
-                startActivity(intent);
-            }
+        main_BTN_Inst.setOnClickListener(v -> {
+            Intent intent = new Intent (MainActivity.this, Instructions_Activity.class);
+            startActivity(intent);
         });
 
-        main_BTN_Quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onStop();
-            }
+        main_BTN_Quit.setOnClickListener(v -> onStop());
+
+        main_BTN_Scores.setOnClickListener(v -> {
+            Intent intent = new Intent (MainActivity.this, Scores_Activity.class);
+            startActivity(intent);
         });
     }
 
@@ -62,13 +57,14 @@ public class MainActivity extends AppCompatActivity {
         main_BTN_GaneStart = findViewById(R.id.main_BTN_GameStart);
         main_BTN_Inst = findViewById(R.id.main_BTN_Instruction);
         main_BTN_Quit = findViewById(R.id.main_BTN_Quit);
-
+        main_BTN_Scores = findViewById(R.id.main_BTN_Scores);
     }
 
     @Override
     protected void onStart() {
         Log.d("main", "Been Started");
         super.onStart();
+
     }
 
     @Override
@@ -94,4 +90,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    private void colorMyBtns() {
+        main_BTN_GaneStart.setBackgroundColor(Color.parseColor("#232F34"));
+        main_BTN_Inst.setBackgroundColor(Color.parseColor("#232F34"));
+        main_BTN_Quit.setBackgroundColor(Color.parseColor("#232F34"));
+        main_BTN_Scores.setBackgroundColor(Color.parseColor("#232F34"));
+    }
 }

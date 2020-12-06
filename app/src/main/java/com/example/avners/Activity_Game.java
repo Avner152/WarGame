@@ -13,15 +13,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Activity_Game extends AppCompatActivity {
+public class Activity_Game extends Main {
 
     private static ArrayList<Card> cards = new ArrayList<>();
 
-    final int DELAY = 750;
+    final int DELAY = 75;
     private TextView game_LBL_Num1, game_LBL_Num2, game_LBL_Answer, game_LBL_Winner;
     private ImageView game_IMG_LeftCard, game_IMG_RightCard;
     private Button  game_BTN_forfeit;
-    private int num1, num2,power1, power2,curScore1 ,curScore2, score1 = 0, score2 = 0, counter = 0, res = 0;
     private MediaPlayer mp;
 
 
@@ -37,8 +36,11 @@ public class Activity_Game extends AppCompatActivity {
         initViews();
     }
 
+
+
     private void startGame() {
-    handler.postDelayed(r,DELAY);
+        handler.postDelayed(r,DELAY);
+        score1 = score2 = 0;
     }
 
     private void createCards() {
@@ -138,8 +140,8 @@ public class Activity_Game extends AppCompatActivity {
             game_LBL_Answer.setText("wins!");
         }else if(mp!= null)
                 mp.release();
-            handler.removeCallbacks(r);
-        }
+        handler.removeCallbacks(r);
+    }
 
     private void playSound(int rawId) {
         mp = MediaPlayer.create(this, rawId);
@@ -187,8 +189,10 @@ public class Activity_Game extends AppCompatActivity {
         game_LBL_Num1.setText("" + score1);
         game_LBL_Num2.setText("" + score2);
 
+        addToList();
         if (score1 >= 10)
             return 1;
+
         else if (score2 >= 10)
             return 2;
 
