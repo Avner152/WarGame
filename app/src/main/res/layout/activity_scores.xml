@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Acitivities.MainActivity"
+    android:layout_centerHorizontal="true"
+    android:background="@color/backBlue"
+    >
+
+    <TextView
+        android:id="@+id/SC_LBL_Player1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/ViewLine"
+        android:text="Player #1\t\t\t"
+        android:textStyle="italic"
+        android:textColor="#f9aa33"
+        android:textSize="41dp"
+
+        ></TextView>
+
+
+    <TextView
+        android:id="@+id/SC_LBL_Player2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ViewLine"
+        android:textColor="#f9aa33"
+        android:gravity="center"
+        android:textSize="41dp"
+        android:text="\tPlayer #2"
+        android:textStyle="italic"
+        ></TextView>
+
+    <View
+        android:id="@+id/ViewLine"
+        android:layout_width="2dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp"
+        android:background="@android:color/black"
+        android:foreground="@color/silver" />
+
+    <TextView
+        android:id="@+id/TXT_Scores1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SC_LBL_Player1"
+        android:layout_alignTop="@id/ViewLine"
+        android:layout_marginLeft="98dp"
+        android:layout_marginTop="-7dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/LBL_TotalScores1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ViewLine"
+        android:layout_alignLeft="@id/TXT_Scores1"
+        android:text="Total:"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/LBL_Total_Wins1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LBL_TotalScores1"
+        android:layout_alignLeft="@id/TXT_Scores1"
+        android:text="- - - "
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/TXT_Scores2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ViewLine"
+        android:layout_alignLeft="@id/ViewLine"
+        android:layout_marginLeft="85dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/LBL_Total_Scores2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ViewLine"
+        android:layout_alignLeft="@id/TXT_Scores2"
+        android:text="Total:"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/LBL_Total_Wins2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LBL_Total_Scores2"
+        android:layout_alignLeft="@id/TXT_Scores2"
+        android:text="- - - "
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:textStyle="bold"></TextView>
+
+</RelativeLayout>
