@@ -1,6 +1,4 @@
-package com.example.avners;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.avners.Acitivities;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.avners.R;
 
 import java.util.ArrayList;
 

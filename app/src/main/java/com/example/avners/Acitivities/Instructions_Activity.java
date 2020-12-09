@@ -1,22 +1,19 @@
-package com.example.avners;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.avners.Acitivities;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.example.avners.R;
 
 public class Instructions_Activity extends Main {
 
     private final String INSTR_STR = strId();
     private Handler handler = new Handler();
     private String newStr = "";
-    private static final int DELAY = 40;
+    private static final int DELAY = 750;
     private TextView tv;
     private int curChar = 0;
     private boolean initChar = false;

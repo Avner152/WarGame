@@ -1,16 +1,16 @@
-package com.example.avners;
+package com.example.avners.Acitivities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.avners.R;
 
 public class MainActivity extends Main {
 
