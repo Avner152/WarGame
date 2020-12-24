@@ -4,35 +4,64 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/backBlue"
     tools:context=".Acitivities.Instructions_Activity"
 
     >
 
+    <ImageView
+        android:id="@+id/inst_IMG_wp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"></ImageView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/main_TXT_Title"
+        android:id="@+id/inst_TXT_Title"
         android:text="Instructions"
         android:textSize="55dp"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textColor="#f9aa33"
-
-
         ></TextView>
 
     <TextView
         android:id="@+id/R.id.TEXT"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/main_TXT_Title"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inst_TXT_Title"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:textColor="@color/white"
         android:text=""
         android:textSize="19dp"></TextView>
+
+
+    <Button
+        android:id="@+id/inst_BTN_back"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_alignEnd="@id/inst_TXT_Title"
+        android:layout_alignParentBottom="true"
+        android:textSize= "25dp"
+        android:textStyle="bold"
+
+        android:layout_marginEnd="-55dp"
+        android:layout_marginBottom="0dp"
+        android:text="Back"></Button>
+
+    <Button
+        android:id="@+id/inst_BTN_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_alignStart="@id/inst_TXT_Title"
+        android:text="Skip"
+        android:layout_marginStart="46dp"
+        android:layout_alignParentBottom="true"
+        android:textSize= "25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="0dp"></Button>
 
 </RelativeLayout>

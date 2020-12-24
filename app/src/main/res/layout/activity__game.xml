@@ -6,10 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Acitivities.Activity_Game"
-    android:background="@color/backBlue"
 
     >
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/game_IMG_wp"
+        android:scaleType="centerCrop"
+        ></ImageView>
     <ImageView
         android:id="@+id/game_IMG_LeftCard"
         android:layout_width="220dp"
@@ -39,7 +43,7 @@
         />
 
     <TextView
-        android:id="@+id/game_LBL_NUM1"
+        android:id="@+id/game_LBL_Score1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/game_BTN_forfeit"
@@ -49,7 +53,7 @@
         android:textSize="55dp"/>
 
     <TextView
-        android:id="@+id/game_LBL_NUM2"
+        android:id="@+id/game_LBL_Score2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/game_LBL_Winner"
@@ -78,6 +82,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:textSize="35dp"
+        android:textColor="@color/white"
         android:text=""
         />
 

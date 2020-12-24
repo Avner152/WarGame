@@ -1,4 +1,4 @@
-package com.example.avners.Acitivities;
+package com.example.avners.utils;
 
 public class Card {
     private String name;

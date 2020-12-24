@@ -1,6 +1,7 @@
 package com.example.avners.Acitivities;
 
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,22 +10,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import com.bumptech.glide.Glide;
 import com.example.avners.R;
+import com.example.avners.utils.Card;
+import com.example.avners.utils.MyDataBase;
+import com.example.avners.utils.mySPV;
+import com.example.avners.utils.Record;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class Activity_Game extends Main {
 
+    public static final String KEY_DATABASE = "myKey";
     private static ArrayList<Card> cards = new ArrayList<>();
-
+    private String winnerName, jsonInString;
+    private int winnerScore;
     final int DELAY = 75;
     private TextView game_LBL_Num1, game_LBL_Num2, game_LBL_Answer, game_LBL_Winner;
-    private ImageView game_IMG_LeftCard, game_IMG_RightCard;
+    private ImageView game_IMG_LeftCard, game_IMG_RightCard, game_IMG_wp;
     private Button  game_BTN_forfeit;
     private MediaPlayer mp;
-
-
-
+    private MyDataBase dataBase;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +42,14 @@ public class Activity_Game extends Main {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__game);
         findViews();
+        Glide.with(this).load(R.drawable.wpnew).into(game_IMG_wp);
+        if(dataBase == null)
+            dataBase = new MyDataBase();
+
+        gson = new Gson();
         createCards();
         initViews();
     }
-
-
 
     private void startGame() {
         handler.postDelayed(r,DELAY);
@@ -75,19 +88,14 @@ public class Activity_Game extends Main {
     protected void onPause() {
         Log.d("game", "Game paused");
         super.onPause();
-        pauseGame(curScore1, curScore2);
-
     }
 
-    private void pauseGame(int curScore1, int curScore2) {
-
-    }
 
     @Override
     protected void onStop() {
         Log.d("game", "Game Stopped");
         super.onStop();
-        stopGame(res);
+        stopGame(0);
 
     }
 
@@ -124,10 +132,11 @@ public class Activity_Game extends Main {
     }
 
     private void findViews() {
+        game_IMG_wp = findViewById(R.id.game_IMG_wp);
         game_LBL_Winner = findViewById(R.id.game_LBL_Winner);
         game_BTN_forfeit = findViewById(R.id.game_BTN_forfeit);
-        game_LBL_Num1 = findViewById(R.id.game_LBL_NUM1);
-        game_LBL_Num2 = findViewById(R.id.game_LBL_NUM2);
+        game_LBL_Num1 = findViewById(R.id.game_LBL_Score1);
+        game_LBL_Num2 = findViewById(R.id.game_LBL_Score2);
         game_LBL_Answer = findViewById(R.id.game_LBL_Answer);
         game_IMG_LeftCard = findViewById(R.id.game_IMG_LeftCard);
         game_IMG_RightCard = findViewById(R.id.game_IMG_RightCard);
@@ -183,23 +192,46 @@ public class Activity_Game extends Main {
                     score2--;
             }
 
-        curScore1 = score1;
-        curScore2 = score2;
-
         game_LBL_Num1.setText("" + score1);
         game_LBL_Num2.setText("" + score2);
 
-        addToList();
-        if (score1 >= 10)
+        if (score1 == 10) {
+
+            winnerName  =  "Player1";
+            winnerScore = score1 - score2;
+            s1.setScore1(++countWins1);
+            setRecord(winnerName, winnerScore);
+
             return 1;
-
-        else if (score2 >= 10)
+        }
+        else if (score2 == 10) {
+            winnerName  ="Player2";
+            winnerScore = score2 - score1;
+            s2.setScore2(++countWins2);
+            setRecord(winnerName, winnerScore);
             return 2;
-
+        }
         return 0;
     }
 
-        private void showCards(int num1, int num2) {
+    private void setRecord(String winnerName, int winnerScore) {
+        Record winnerRecord = new Record(winnerName, winnerScore,0,0 );
+        dataBase.insert_Record(winnerRecord);
+        if (mySPV.getInstance() != null) {
+            jsonInString = mySPV.getInstance().getString(KEY_DATABASE, "");
+            if (jsonInString != null && jsonInString != "") {
+                dataBase = gson.fromJson(jsonInString, MyDataBase.class);
+            }
+        }
+        if (dataBase.insert_Record(new Record(winnerName, winnerScore,  0, 0))) {
+            //save
+            jsonInString = gson.toJson(dataBase);
+            mySPV.getInstance().putString(KEY_DATABASE, jsonInString);
+            Log.d("pttt", "after enter record : " + mySPV.getInstance().getString(KEY_DATABASE, ""));
+        }
+    }
+
+    private void showCards(int num1, int num2) {
             int leftCard = getResources().getIdentifier("img" + num1, "drawable", getPackageName() );
             game_IMG_LeftCard.setImageResource(leftCard);
 

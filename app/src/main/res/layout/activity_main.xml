@@ -6,10 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Acitivities.MainActivity"
-    android:background="@color/backBlue"
 
     >
-
+    <ImageView
+        android:id="@+id/main_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        ></ImageView>
     <TextView
         android:id="@+id/main_LBL_title"
         android:layout_width="match_parent"
@@ -17,17 +21,21 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
-        android:shadowColor="@color/silver"
+        android:shadowColor="@color/black"
         android:gravity="center"
         android:text="Dragon Ball WarGame"
         android:textColor="#f9aa33"
         android:textSize="40dp"
+        android:shadowDx="2"
+        android:shadowDy="3"
+        android:shadowRadius="10"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/main_IMG_Wallpaper"
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="550dp"
+        android:alpha="0.55"
         android:layout_below="@id/main_LBL_title"
         android:src="@drawable/wallpaper">
 
@@ -62,7 +70,7 @@
 
         <Button
             android:id="@+id/main_BTN_Quit"
-            android:layout_width="157dp"
+            android:layout_width="wrap_content"
             android:layout_height="65dp"
             android:text="Quit"
             android:textAllCaps="false"
