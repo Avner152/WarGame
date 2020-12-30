@@ -1,7 +1,6 @@
 package com.example.avners.Acitivities;
 
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,13 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
-
 import com.bumptech.glide.Glide;
 import com.example.avners.R;
 import com.example.avners.utils.Card;
 import com.example.avners.utils.MyDataBase;
-import com.example.avners.utils.mySPV;
+import com.example.avners.utils.MySPV;
 import com.example.avners.utils.Record;
 import com.google.gson.Gson;
 
@@ -28,7 +25,7 @@ public class Activity_Game extends Main {
     private static ArrayList<Card> cards = new ArrayList<>();
     private String winnerName, jsonInString;
     private int winnerScore;
-    final int DELAY = 75;
+    final int DELAY = 750;
     private TextView game_LBL_Num1, game_LBL_Num2, game_LBL_Answer, game_LBL_Winner;
     private ImageView game_IMG_LeftCard, game_IMG_RightCard, game_IMG_wp;
     private Button  game_BTN_forfeit;
@@ -113,7 +110,7 @@ public class Activity_Game extends Main {
         @Override
         public void run() {
             handler.postDelayed(this, DELAY);
-             res = shuffle(curScore1, curScore2);
+            res = shuffle(curScore1, curScore2);
             if (res != 0)
                 stopGame(res);
         }
@@ -125,8 +122,8 @@ public class Activity_Game extends Main {
             @Override
             public void onClick(View v) {
                 res = 0;
-            stopGame(res);
-            finish();
+                stopGame(res);
+                finish();
             }
         });
     }
@@ -148,7 +145,7 @@ public class Activity_Game extends Main {
             game_LBL_Winner.setText("Player #"+res);
             game_LBL_Answer.setText("wins!");
         }else if(mp!= null)
-                mp.release();
+            mp.release();
         handler.removeCallbacks(r);
     }
 
@@ -176,21 +173,21 @@ public class Activity_Game extends Main {
 
         showCards(num1, num2);
 
-            if (power1 < power2){
-                score2++;
-                game_LBL_Answer.setText(findNameById(num2));
-            }
-            else if (power1 > power2) {
-                score1++;
-                game_LBL_Answer.setText(findNameById(num1));
-            }
-            else {
-                game_LBL_Answer.setText("It's a Tie!");
-                if(score1 > 0)
-                    score1--;
-                if(score2 > 0)
-                    score2--;
-            }
+        if (power1 < power2){
+            score2++;
+            game_LBL_Answer.setText(findNameById(num2));
+        }
+        else if (power1 > power2) {
+            score1++;
+            game_LBL_Answer.setText(findNameById(num1));
+        }
+        else {
+            game_LBL_Answer.setText("It's a Tie!");
+            if(score1 > 0)
+                score1--;
+            if(score2 > 0)
+                score2--;
+        }
 
         game_LBL_Num1.setText("" + score1);
         game_LBL_Num2.setText("" + score2);
@@ -217,26 +214,26 @@ public class Activity_Game extends Main {
     private void setRecord(String winnerName, int winnerScore) {
         Record winnerRecord = new Record(winnerName, winnerScore,0,0 );
         dataBase.insert_Record(winnerRecord);
-        if (mySPV.getInstance() != null) {
-            jsonInString = mySPV.getInstance().getString(KEY_DATABASE, "");
+        if (MySPV.getInstance() != null) {
+            jsonInString = MySPV.getInstance().getString(KEY_DATABASE, "");
             if (jsonInString != null && jsonInString != "") {
                 dataBase = gson.fromJson(jsonInString, MyDataBase.class);
             }
         }
-        if (dataBase.insert_Record(new Record(winnerName, winnerScore,  0, 0))) {
+        if (dataBase.insert_Record(new Record(winnerName, winnerScore,  -50 + Math.random() * 40, -50 + Math.random() * 40))) {
             //save
             jsonInString = gson.toJson(dataBase);
-            mySPV.getInstance().putString(KEY_DATABASE, jsonInString);
-            Log.d("pttt", "after enter record : " + mySPV.getInstance().getString(KEY_DATABASE, ""));
+            MySPV.getInstance().putString(KEY_DATABASE, jsonInString);
+            Log.d("pttt", "after enter record : " + MySPV.getInstance().getString(KEY_DATABASE, ""));
         }
     }
 
     private void showCards(int num1, int num2) {
-            int leftCard = getResources().getIdentifier("img" + num1, "drawable", getPackageName() );
-            game_IMG_LeftCard.setImageResource(leftCard);
+        int leftCard = getResources().getIdentifier("img" + num1, "drawable", getPackageName() );
+        game_IMG_LeftCard.setImageResource(leftCard);
 
-            int rightCard = getResources().getIdentifier("img" + num2, "drawable", getPackageName() );
-            game_IMG_RightCard.setImageResource(rightCard);
+        int rightCard = getResources().getIdentifier("img" + num2, "drawable", getPackageName() );
+        game_IMG_RightCard.setImageResource(rightCard);
     }
 
     private int findPowerById(int id) {

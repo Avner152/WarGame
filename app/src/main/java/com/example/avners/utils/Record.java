@@ -17,6 +17,13 @@ public class Record {
     lat = y;
     }
 
+    public double getLon() {
+        return lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
 
     public String getName() {
         return name;
@@ -36,6 +43,7 @@ public class Record {
 
     @Override
     public String toString() {
-        return "The Winner: " + name + ", Score: " + score;
+        return  name + ", Score: " + score ;
     }
 }
+

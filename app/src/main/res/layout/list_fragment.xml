@@ -9,31 +9,29 @@
 
     <ImageView
         android:id="@+id/ribbon1"
-        android:layout_width="59dp"
-        android:layout_height="45dp"
+        android:layout_width="70dp"
+        android:layout_height="55dp"
         android:layout_marginTop="5dp"
-        android:src="@drawable/winner_ribbon_img" />
+        android:src="@drawable/gold" />
     <ImageView
         android:id="@+id/ribbon2"
-        android:layout_width="59dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="73dp"
-        android:src="@drawable/winner_ribbon_img" />
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="63dp"
+        android:src="@drawable/silver" />
 
     <ImageView
         android:id="@+id/ribbon3"
-        android:layout_width="59dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="135dp"
-        android:src="@drawable/winner_ribbon_img" />
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="127dp"
+        android:src="@drawable/bronze" />
 
 
     <ListView
         android:id="@+id/score_list"
         android:layout_width="wrap_content"
-        android:layout_height="188dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="-5dp" />
-
-
 </FrameLayout>

@@ -1,6 +1,8 @@
 package com.example.avners.utils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,28 +11,29 @@ import java.util.Stack;
 
 public class MyDataBase {
     private ArrayList<Record> records;
-    private final int MAX_SIZE = 3;
+    private final int MAX_SIZE = 10;
+
     public MyDataBase(){
         records = new ArrayList<Record>();
     }
     public Boolean insert_Record(Record record){
-        if(records.size() >= 3)
+        if(records.size() >= MAX_SIZE)
             for (int i = MAX_SIZE; i < records.size(); i++) {
                 records.remove(i);
             }
-        Log.d("Size?", "insert_Record: " + records.size());
         if (records.size() == 0){
             records.add(record);
             return true;
         }
-                if (records.size() < MAX_SIZE) {
-                    records.add(record);
-                }
-                    else {
-                   findRecordToDump(record);
-                }
-            sortDsc();
-                return true;
+
+        if (records.size() < MAX_SIZE) {
+            records.add(record);
+        }
+        else {
+            findRecordToDump(record);
+        }
+        sortDsc();
+        return true;
     }
 
     private void sortDsc() {
@@ -47,15 +50,15 @@ public class MyDataBase {
         records.add(r);
         int count = 2;
         sortDsc();
-            for (int i = 3; i >= 0 ; i--) {
-                temp.push(records.get(i));
-            }
-            records.clear();
+        for (int i = MAX_SIZE; i >= 0 ; i--) {
+            temp.push(records.get(i));
+        }
+        records.clear();
 
-            while(count >= 0) {
-                records.add(temp.pop());
-                count--;
-            }
+        while(count >= 0) {
+            records.add(temp.pop());
+            count--;
+        }
         temp.clear();
     }
 

@@ -27,7 +27,7 @@ public class Main extends AppCompatActivity {
         String jStr2 = gson.toJson(l2);
 
         inits();
-            Log.d("sttt", "inits!");
+        Log.d("sttt", "inits!");
     }
 
 
@@ -41,7 +41,7 @@ public class Main extends AppCompatActivity {
             s2 = new Score();
         }
         if(stScore == null && ndScore == null)
-        stScore = ndScore = "";
+            stScore = ndScore = "";
     }
 
     @Override

@@ -4,21 +4,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.avners.R;
 import com.example.avners.fragments.Fragment_list;
 import com.example.avners.fragments.Fragment_map;
+import com.google.android.gms.maps.GoogleMap;
 
 import java.util.ArrayList;
 
 public class Scores_Activity extends Main implements Fragment_list.CallBack_list {
 
-    protected static TextView LBL_Total_Wins1, LBL_Total_Wins2;
-//    private ImageView score_IMG_wp;
     private Fragment_list fragment_list = new Fragment_list();
     private Fragment_map fragment_map;
     private ListView listView;
@@ -37,7 +34,6 @@ public class Scores_Activity extends Main implements Fragment_list.CallBack_list
         // link bundle to fragment
         Bundle bundle = new Bundle();
         fragment_list.setArguments(bundle);
-
         listFragManager();
 
         //  MAP //
@@ -52,8 +48,6 @@ public class Scores_Activity extends Main implements Fragment_list.CallBack_list
     private void listFragManager() {
         fragment_list.setCallBackList(this);
     }
-
-
 
     private void findViews() {
         listView = findViewById(R.id.score_list);
@@ -90,8 +84,4 @@ public class Scores_Activity extends Main implements Fragment_list.CallBack_list
         fragment_map.setCoord(d1, d2);
     }
 
-    @Override
-    public void addWinnerToList(String str) {
-
-    }
 }
